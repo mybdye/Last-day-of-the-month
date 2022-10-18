@@ -5,8 +5,8 @@ name: CI
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-      branches: [ "main" ]
+  #push:
+  #    branches: [ "main" ]
 #   pull_request:
 #     branches: [ "main" ]
 
@@ -21,22 +21,18 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
+    steps:    
     
-    
-    # echo $(date --date="next day" +%d)
     - name: get tomorrow
       env: 
         ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       run: | 
         echo "::set-env name=tomorrow::$(date --date="next day" +%d)"
-    - name: tomorrow is 19th
-      if: env.tomorrow == 19
+    - name: 明天是 1st
+      if: env.tomorrow == 1
       run: |
-        echo "yes"
-        echo $tomorrow
-    - name: 条件执行2
-      if: env.tomorrow != 19
+        echo "yes，执行以下步骤"
+    - name: 明天不是 1st
+      if: env.tomorrow != 1
       run: |
-        echo "no"
-        echo $tomorrow
+        echo "no，执行另外的步骤"
