@@ -22,23 +22,20 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: |
-          echo $(date --date="next day" +%d)
-          let tomorrow=echo $(date --date="next day" +%d)
-          echo "----"
-          echo tomorrow
-      - name: Tomorrow is 19th
-        if: tomorrow == 19
-        run: |
-          echo "yes"
-      - name: Tomorrow is not 19th
-        if: tomorrow != 19
-        run: |
-          echo "no"
-
     
+    
+    # echo $(date --date="next day" +%d)
+    - name: 设置shell环境变量
+      run: |
+        x=1
+        y=2
+        let z=x+y
+        echo "::set-env name=z::$z"
+    - name: 条件执行1
+      if: env.z > 2
+      run: |
+        echo $z
+    - name: 条件执行2
+      if: env.z > 3
+      run: |
+        echo $z
