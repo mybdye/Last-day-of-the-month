@@ -31,7 +31,7 @@ jobs:
           echo $(date --date="next day" +%d)
           let tomorrow=$(date --date="next day" +%d)
           echo "----"
-          echo echo "::set-env name=tomorrow::$tomorrow"
+          echo "::set-env name=tomorrow::$tomorrow"
       - name: Tomorrow is 19th
         if: env.tomorrow == 19
         run: |
