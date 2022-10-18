@@ -26,11 +26,17 @@ jobs:
     
     # echo $(date --date="next day" +%d)
     - name: 设置shell环境变量
+      run: | 
+        ACTIONS_ALLOW_UNSECURE_COMMANDS=true
+        x=1
+        y=2
+        let z=x+y
+        echo "::set-env name=z::$z"
+    - name: 条件执行1
+      if: env.z > 2
       run: |
-        echo "tomorrow=v$(date --date="next day" +%d)" >> $GITHUB_ENV
-        echo "--1--"
-        echo $tomorrow
-        echo "--2--"
-        echo "${{ env.tomorrow }}"
-
- 
+        echo $z
+    - name: 条件执行2
+      if: env.z > 3
+      run: |
+        echo $z
