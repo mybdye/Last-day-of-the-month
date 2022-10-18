@@ -27,11 +27,10 @@ jobs:
     # echo $(date --date="next day" +%d)
     - name: 设置shell环境变量
       run: |
-        tomorrow=$(date --date="next day" +%d)
-        echo "z=$tomorrow" >> $GITHUB_ENV
+        echo "tomorrow=v$(date --date="next day" +%d)" >> $GITHUB_ENV
         echo "--1--"
         echo $tomorrow
         echo "--2--"
-        echo "${{ env.z }}"
+        echo "${{ env.tomorrow }}"
 
  
