@@ -26,9 +26,8 @@ jobs:
     
     # echo $(date --date="next day" +%d)
     - name: 设置shell环境变量
-      env: |
-        ACTIONS_ALLOW_UNSECURE_COMMANDS=true
-
+      env: 
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       run: | 
         x=1
         y=2
