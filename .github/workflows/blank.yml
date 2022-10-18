@@ -31,6 +31,7 @@ jobs:
           echo $(date --date="next day" +%d)
           let tomorrow=echo $(date --date="next day" +%d)
           echo "----"
+          echo tomorrow
       - name: Tomorrow is 19th
         if: tomorrow == 19
         run: |
