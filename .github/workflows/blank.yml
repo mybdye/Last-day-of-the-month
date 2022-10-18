@@ -27,6 +27,7 @@ jobs:
     # echo $(date --date="next day" +%d)
     - name: 设置shell环境变量
       run: |
+        tomorrow=$(date --date="next day" +%d)
         echo "tomorrow=$(date --date="next day" +%d)" >> $GITHUB_ENV
         echo "--1--"
         echo $tomorrow
