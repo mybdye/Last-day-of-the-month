@@ -33,11 +33,11 @@ jobs:
           echo "----"
           echo $tomorrow
       - name: Tomorrow is 19th
-        if: $tomorrow == 19
+        if: tomorrow == 19
         run: |
           echo "yes"
       - name: Tomorrow is not 19th
-        if: $tomorrow != 19
+        if: tomorrow != 19
         run: |
           echo "no"
 
