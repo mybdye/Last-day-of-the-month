@@ -29,15 +29,14 @@ jobs:
       - name: Run a one-line script
         run: |
           echo $(date --date="next day" +%d)
-          let tomorrow=(date --date="next day" +%d)
+          let tomorrow=echo $(date --date="next day" +%d)
           echo "----"
-          echo "::set-env name=tomorrow::$tomorrow"
       - name: Tomorrow is 19th
-        if: env.tomorrow == 19
+        if: tomorrow == 19
         run: |
           echo "yes"
       - name: Tomorrow is not 19th
-        if: env.tomorrow != 19
+        if: tomorrow != 19
         run: |
           echo "no"
 
