@@ -1,4 +1,4 @@
-name: CI
+name: template
 
 # Controls when the workflow will run
 on:
@@ -39,10 +39,10 @@ jobs:
     needs: job-1
     steps:     
     - name: 明天是 1st
-      if: needs.job-1.outputs.output1 == 21
+      if: needs.job-1.outputs.output1 == 1
       run: |
         echo ${{needs.job-1.outputs.output1}}
     - name: 明天不是 1st
-      if: needs.job-1.outputs.output1 != 21
+      if: needs.job-1.outputs.output1 != 1
       run: |
         echo ${{needs.job-1.outputs.output1}}
