@@ -23,26 +23,27 @@ jobs:
   job-2:
     needs: [job-1]
     runs-on: macos-12
+        # 'Checkout codes'
+    
     steps:     
-    - name: 明天是 21
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: 明天是 21，执行程序
       if: env.tomorrow == 21
-        - name: 'Checkout codes'
-          uses: actions/checkout@v2
+        
+      env:
+        EU_USER_ID: ${{ secrets.EU_USER_ID }}
+        EU_PASS_WD: ${{ secrets.EU_PASS_WD }}
+        CAPTCHA_USER_ID: ${{ secrets.CAPTCHA_USER_ID }}
+        CAPTCHA_APIKEY: ${{ secrets.CAPTCHA_APIKEY }}
+        MAILPARSER: ${{ secrets.MAILPARSER }}
+        BARK_KEY: ${{ secrets.BARK_KEY }}
+        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        TG_USER_ID: ${{ secrets.TG_USER_ID }}
 
-        - name: 'Environment Settings'
-          run: |
-            pip3 install -r ./requirements.txt
-            brew upgrade --cask google-chrome            
-        - name: 'Renew'
-          env:
-            EU_USER_ID: ${{ secrets.EU_USER_ID }}
-            EU_PASS_WD: ${{ secrets.EU_PASS_WD }}
-            CAPTCHA_USER_ID: ${{ secrets.CAPTCHA_USER_ID }}
-            CAPTCHA_APIKEY: ${{ secrets.CAPTCHA_APIKEY }}
-            MAILPARSER: ${{ secrets.MAILPARSER }}
-            BARK_KEY: ${{ secrets.BARK_KEY }}
-            TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-            TG_USER_ID: ${{ secrets.TG_USER_ID }}
-            
-          run: |
-            python3 ./main.py
+      run: |
+        pip3 install -r ./requirements.txt
+        brew upgrade --cask google-chrome  
+        python3 ./main.py
+    - name: 明天不是是 21，不执行程序
+      if: env.tomorrow ！= 21
