@@ -47,4 +47,4 @@ jobs:
     - name: 明天不是是 21，不执行程序
       if: env.tomorrow != 21
       run: |
-        echo "明天不是是 21，不执行程序"
+        echo ${{ env.tomorrow }}
