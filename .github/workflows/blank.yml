@@ -23,7 +23,7 @@ jobs:
     - id: get-tomorrow
 #       env: 
 #         ACTIONS_ALLOW_UNSECURE_COMMANDS: true  
-      run: echo "tomorrow=$(date --date="next day" +%d)"
+      run: echo "tomorrow=$(date --date="next day" +%d)" >> $GITHUB_OUTPUT
 
 #        echo "::set-env name=tomorrow::$(date --date="next day" +%d)"
 #     - name: 明天是 1st
