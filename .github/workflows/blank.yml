@@ -17,12 +17,15 @@ jobs:
   job-1:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.get-tomorrow.outputs.tomorrow }}
     steps:    
-    - name: get tomorrow
-      env: 
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-      run: | 
-        echo "::set-env name=tomorrow::$(date --date="next day" +%d)"
+    - id: get-tomorrow
+#       env: 
+#         ACTIONS_ALLOW_UNSECURE_COMMANDS: true  
+      run: echo "tomorrow=$(date --date="next day" +%d)"
+
+#        echo "::set-env name=tomorrow::$(date --date="next day" +%d)"
 #     - name: 明天是 1st
 #       if: env.tomorrow == 1
 #       run: |
@@ -32,14 +35,14 @@ jobs:
 #       run: |
 #         echo "no，执行另外的步骤"
   job-2:
-    needs: [job-1]
     runs-on: macos-12
+    needs: job-1
     steps:     
     - name: 明天是 1st
-      if: env.tomorrow == 1
+      if: env.tomorrow == 21
       run: |
-        echo "yes，执行以下步骤"
+        echo ${{needs.job-1.outputs.output1}}
     - name: 明天不是 1st
-      if: env.tomorrow != 1
+      if: env.tomorrow != 21
       run: |
-        echo "no，执行另外的步骤"
+        echo ${{needs.job-1.outputs.output1}}
