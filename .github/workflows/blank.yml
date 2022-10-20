@@ -39,10 +39,10 @@ jobs:
     needs: job-1
     steps:     
     - name: 明天是 1st
-      if: env.tomorrow == 21
+      if: needs.job-1.outputs.output1 == 21
       run: |
         echo ${{needs.job-1.outputs.output1}}
     - name: 明天不是 1st
-      if: env.tomorrow != 21
+      if: needs.job-1.outputs.output1 != 21
       run: |
         echo ${{needs.job-1.outputs.output1}}
